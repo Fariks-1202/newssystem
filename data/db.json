@@ -360,8 +360,8 @@
   "categories": [
     {
       "id": 1,
-      "title": "时事新闻123",
-      "value": "时事新闻123"
+      "title": "时事新闻",
+      "value": "时事新闻"
     },
     {
       "id": 2,
@@ -437,8 +437,8 @@
       "auditState": 2,
       "publishState": 2,
       "createTime": 1615777743864,
-      "star": 1000,
-      "view": 2005,
+      "star": 1004,
+      "view": 12,
       "id": 1,
       "publishTime": 1615778496314
     },
@@ -452,8 +452,8 @@
       "auditState": 2,
       "publishState": 2,
       "createTime": 1615778694831,
-      "star": 500,
-      "view": 804,
+      "star": 501,
+      "view": 809,
       "id": 2,
       "publishTime": 1615778911028
     },
@@ -513,7 +513,7 @@
       "publishState": 2,
       "createTime": 1615778808893,
       "star": 300,
-      "view": 454,
+      "view": 457,
       "id": 6,
       "publishTime": 1615778916224
     },
@@ -528,8 +528,8 @@
       "auditState": 2,
       "publishState": 2,
       "createTime": 1636942805410,
-      "star": 0,
-      "view": 0,
+      "star": 6,
+      "view": 4,
       "id": 16
     },
     {
@@ -553,8 +553,8 @@
       "region": "全球",
       "author": "admin",
       "roleId": 1,
-      "auditState": 1,
-      "publishState": 0,
+      "auditState": 2,
+      "publishState": 3,
       "createTime": 1637027378826,
       "star": 0,
       "view": 0,
@@ -601,6 +601,20 @@
       "star": 0,
       "view": 0,
       "id": 22
+    },
+    {
+      "title": "新闻3",
+      "cate": "环球经济",
+      "content": "<p>zzzz</p>\n",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 2,
+      "publishState": 3,
+      "createTime": 1637714488982,
+      "star": 0,
+      "view": 0,
+      "id": 23
     }
   ]
 }
