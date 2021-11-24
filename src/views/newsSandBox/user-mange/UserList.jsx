@@ -25,7 +25,7 @@ function UserList(props) {
             '2':'admin',
             '3':'editor'
         }
-        axios.get('http://localhost:5000/users?_expand=role').then(res => {
+        axios.get('/users?_expand=role').then(res => {
             const data = res.data
             console.log(data)
             //过滤用户列表数据
@@ -36,12 +36,12 @@ function UserList(props) {
         })
     }, [roleId,region,username])
     useEffect(() => {
-        axios.get('http://localhost:5000/roles').then(res => {
+        axios.get('/roles').then(res => {
             setRoleList(res.data)
         })
     }, [])
     useEffect(() => {
-        axios.get('http://localhost:5000/regions').then(res => {
+        axios.get('/regions').then(res => {
             setRegionList(res.data)
         })
     }, [])
@@ -57,7 +57,7 @@ function UserList(props) {
                 // console.log(item)
                 // 删除：当前页面数据删除 + 后端数据删除
                 setDataSource(() => dataSource.filter(i => i.id !== item.id))
-                axios.delete(`http://localhost:5000/users/${item.id}`).then(res => {
+                axios.delete(`/users/${item.id}`).then(res => {
                         console.log(res)
                         if (res.status === 200) {
                             return message.success('删除成功')
@@ -88,7 +88,7 @@ function UserList(props) {
     const onChange = i => {
         i.roleState = !i.roleState
         setDataSource([...dataSource])
-        axios.patch(`http://localhost:5000/users/${i.id}`, {
+        axios.patch(`/users/${i.id}`, {
             roleState: i.roleState
         }).then(
             message.success('修改成功')
@@ -102,7 +102,7 @@ function UserList(props) {
             // value['roleId'] = value['role']
             // delete value['role']
             //先通过post请求更新数据，然后再更新页面数据，这样方便后续的删除和更新操作
-            axios.post(`http://localhost:5000/users`, {
+            axios.post(`/users`, {
                 ...value,
                 "roleState": true,
                 "default": false
@@ -141,7 +141,7 @@ function UserList(props) {
                     return i
                 }))
             //后台更新
-            axios.patch(`http://localhost:5000/users/${currentItem.id}`, value).then(res => {
+            axios.patch(`/users/${currentItem.id}`, value).then(res => {
                 console.log(res)
             }).catch(err => {
                 console.log(err)

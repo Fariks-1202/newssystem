@@ -11,13 +11,13 @@ function RoleList(props) {
     const [currentId,setCurrentId] = useState(0)
     const [isModalShow, setIsModalShow] = useState(false);
     useEffect(()=>{
-        axios.get('http://localhost:5000/roles').then(res=>{
+        axios.get('/roles').then(res=>{
             setDataSource(res.data)
             }
         )
     },[])
     useEffect(()=>{
-        axios.get('http://localhost:5000/rights?_embed=children').then(res=>{
+        axios.get('/rights?_embed=children').then(res=>{
             setRightList(res.data)
         })
     },[])
@@ -75,7 +75,7 @@ function RoleList(props) {
                 // console.log(item)
                 // 删除：当前页面数据删除 + 后端数据删除
                 setDataSource(()=> dataSource.filter(i=>i.id!==item.id))
-                axios.delete(`http://localhost:5000/roles/${item.id}`).then(
+                axios.delete(`/roles/${item.id}`).then(
                     message.success('删除成功')
                 )
             }
@@ -95,7 +95,7 @@ function RoleList(props) {
             return item
         }))
         // patch更新
-        axios.patch(`http://localhost:5000/roles/${currentId}`,{
+        axios.patch(`/roles/${currentId}`,{
             rights:currentRights
         }).then(()=>{
             message.success('更新成功')

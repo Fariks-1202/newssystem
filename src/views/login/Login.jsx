@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios'
+import axios from "axios";
 import Particles from "react-tsparticles";
 import {Form, Input, Button, message} from 'antd'
 import './Login.css'
@@ -12,7 +12,7 @@ import {
 function Login(props) {
     const onFinish = (values) => {
         console.log(values)
-        axios.get(`http://localhost:5000/users?username=${values.username}&password=${values.password}&_expand=role`).then(res=>{
+        axios.get(`/users?username=${values.username}&password=${values.password}&_expand=role`).then(res=>{
             console.log(res.data)
             if (res.data[0]){
                 localStorage.setItem('token',JSON.stringify(res.data[0]))

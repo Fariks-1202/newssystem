@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import axios from 'axios'
+import axios from "axios";
 import {Table, Tag, Space, Button, Modal, message, Popover, Switch} from 'antd'
 import {
     EditOutlined,
@@ -10,7 +10,7 @@ import {
 function RightList(props) {
     const [dataSource,setDataSource] = useState([])
     useEffect(()=>{
-        axios.get('http://localhost:5000/rights?_embed=children').then(res=>{
+        axios.get('/rights?_embed=children').then(res=>{
             const data = res.data
             // 将数据中children的空数组设为空值
             data.forEach(item=>{
@@ -34,7 +34,7 @@ function RightList(props) {
                 // 如果当前项的层级为1就直接删除
                if (item.grade===1){
                    setDataSource(()=> dataSource.filter(i=>i.id!==item.id))
-                   axios.delete(`http://localhost:5000/rights/${item.id}`).then(
+                   axios.delete(`/rights/${item.id}`).then(
                        message.success('删除成功')
                    )
                } else {
@@ -45,7 +45,7 @@ function RightList(props) {
                    //更新页面数据
                    setDataSource([...dataSource])
                    //更新后台数据
-                   axios.delete(`http://localhost:5000/children/${item.id}`).then(
+                   axios.delete(`/children/${item.id}`).then(
                        message.success('删除成功',5)
                    )
                }
@@ -58,13 +58,13 @@ function RightList(props) {
         setDataSource([...dataSource])
         //更新后端
         if (item.grade === 1){
-            axios.patch(`http://localhost:5000/rights/${item.id}`,{
+            axios.patch(`/rights/${item.id}`,{
                 pagepermisson:item.pagepermisson
             }).then(
                 message.success('修改成功')
             )
         } else {
-            axios.patch(`http://localhost:5000/children/${item.id}`,{
+            axios.patch(`/children/${item.id}`,{
                 pagepermisson:item.pagepermisson
             }).then(
                 message.success('修改成功')

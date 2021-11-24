@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
 import './TopHeader.css'
 import {Layout,Avatar,Dropdown,Menu} from 'antd';
 import {
@@ -10,11 +11,13 @@ import {
 
 const {Header} = Layout;
 function TopHeader(props) {
-    const [collapsed,setCollapsed] = useState(false)
+    // console.log(props)
+    // const [collapsed,setCollapsed] = useState(false)
     //从缓存中获取用户信息
     const {role:{roleName},username} = JSON.parse(localStorage.getItem('token'))
-    const toggle = ()=>{
-        setCollapsed(!collapsed)
+    const changeToggle = ()=>{
+        // setCollapsed(!collapsed)
+        props.changeToggle()
     }
     const logout = ()=>{
         //移除token
@@ -34,9 +37,9 @@ function TopHeader(props) {
     return (
         <Header className="site-layout-background" style={{paddingLeft: '16px'}}>
             {
-                React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,{
+                React.createElement(props.isCollapsed ? MenuUnfoldOutlined : MenuFoldOutlined,{
                     className: 'trigger',
-                    onClick: toggle,
+                    onClick: changeToggle,
                 })
             }
             {/*<span style={{padding:'0 10px'}}></span>*/}
@@ -51,4 +54,18 @@ function TopHeader(props) {
     );
 }
 
-export default withRouter(TopHeader);
+const mapStateToProps = ({collapsedReducer:{isCollapsed}})=>{
+    // console.log(isCollapsed)
+    return {
+        isCollapsed
+    }
+}
+const mapDispatchToProps = {
+    changeToggle(){
+        return {
+            type:'change_toggle'
+        }
+    }
+}
+// connect高阶组件使用后，topHeader组件会得到mapStateToProps中返回的数据
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(TopHeader));
